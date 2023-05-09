@@ -1,15 +1,9 @@
-const http = require('http');
-const hostname = '0.0.0.0';
-const port = 80;
-const server = http.createServer((req, res) => {
-res.statusCode = 200;
-res.setHeader('Content-Type', 'text/plain');
-res.end('Hello World\n');
+const express = require('express');
+const app = express();
+
+app.get('/', (req, res) => {
+  res.send('Hello, Welcome to My Website');
 });
-server.listen(port, hostname, () => {
-console.log('Server running at http://%s:%s/', hostname, port);
-});
-process.on('SIGINT', function() {
-console.log('Caught interrupt signal and will exit');
-process.exit();
-});
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`Listening on port ${port}`));
